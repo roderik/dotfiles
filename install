@@ -1,0 +1,57 @@
+#!/bin/zsh
+
+BGreen='\e[1;32m'       # Green
+BRed='\e[1;31m'         # Red
+Color_Off='\e[0m'       # Text Reset
+
+function setStatusMessage {
+    printf "${IRed} --> ${BGreen}$1${Color_Off}\n" 1>&2
+}
+
+printf "${BGreen}     .___      __    _____.__.__                  ${Color_Off}\n"
+printf "${BGreen}   __| _/_____/  |__/ ____\__|  |   ____   ______ ${Color_Off}\n"
+printf "${BGreen}  / __ |/  _ \   __\   __\|  |  | _/ __ \ /  ___/ ${Color_Off}\n"
+printf "${BGreen} / /_/ (  <_> )  |  |  |  |  |  |_\  ___/ \___ \  ${Color_Off}\n"
+printf "${BGreen} \____ |\____/|__|  |__|  |__|____/\___  >____  > ${Color_Off}\n"
+printf "${BGreen}      \/   http://twitter.com/r0derik  \/     \/  ${Color_Off}\n\n"
+
+
+setStatusMessage "Set MacOS preferences - some settings need a reboot to activate"
+./macos
+
+
+if [[ ! -d "/opt/homebrew" ]]; then
+  setStatusMessage "Installing Homebrew"
+  cd ~
+  mkdir homebrew && curl -L https://github.com/Homebrew/brew/tarball/master | tar xz --strip 1 -C homebrew
+  sudo mv homebrew /opt/homebrew
+fi
+
+setStatusMessage "Updating Homebrew"
+cd /opt/homebrew/bin
+./brew update
+export PATH="/opt/homebrew/bin:$PATH"
+cd ~/dotfiles
+
+setStatusMessage "Installing Homebrew applications from the Brewfile"
+brew install mas
+mas signin roderik@vanderveer.be
+brew bundle
+brew cleanup
+
+if [[ -d ~/.ssh ]]; then
+  setStatusMessage "Fixing ssh key permissions"
+  find ~/.ssh/ -type f -exec chmod 600 {} \;; find ~/.ssh/ -type d -exec chmod 700 {} \;; find ~/.ssh/ -type f -name "*.pub" -exec chmod 644 {} \;
+fi
+
+if [[ ! -d ~/Development/bpaas-launchpad ]]; then
+  setStatusMessage "Setting up the development environment"
+  mkdir -p ~/Development
+  cd ~/development
+  git clone git@github.com:settlemint/bpaas-launchpad.git
+fi
+
+setStatusMessage "Copying the dotfiles to ~"
+cp ~/dotfiles/zsh/.* ~;
+git config --global user.name "Roderik van der Veer"
+git config --global user.email "roderik@settlemint.com"
