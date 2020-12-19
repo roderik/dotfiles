@@ -21,28 +21,54 @@ setStatusMessage "Set MacOS preferences - some settings need a reboot to activat
 
 
 if [[ ! -d "/opt/homebrew" ]]; then
-  setStatusMessage "Installing Homebrew"
+  setStatusMessage "Installing Homebrew (ARM)"
   cd ~
   mkdir homebrew && curl -L https://github.com/Homebrew/brew/tarball/master | tar xz --strip 1 -C homebrew
   sudo mv homebrew /opt/homebrew
+  setStatusMessage "Updating Homebrew"
+  cd /opt/homebrew/bin
+  ./brew update
+  cd ~/dotfiles
 fi
 
-setStatusMessage "Updating Homebrew"
-cd /opt/homebrew/bin
-./brew update
-export PATH="/opt/homebrew/bin:$PATH"
-cd ~/dotfiles
+if [[ ! -d "/usr/local/Homebrew" ]]; then
+  setStatusMessage "Installing Homebrew (Intel)"
+  cd ~
+  arch -x86_64 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+fi
 
-setStatusMessage "Installing Homebrew applications from the Brewfile"
-brew install mas
-mas signin roderik@vanderveer.be
+export PATH="/opt/homebrew/bin:$PATH"
+
+setStatusMessage "Installing Homebrew applications from the main Brewfile"
 brew bundle
 brew cleanup
 
+setStatusMessage "Installing Homebrew applications for Intel"
+arch -x86_64 /usr/local/bin/brew install mas
+arch -x86_64 /usr/local/bin/brew tap "derailed/k9s"
+arch -x86_64 /usr/local/bin/brew install "azure-cli"
+arch -x86_64 /usr/local/bin/brew install "aws-iam-authenticator"
+arch -x86_64 /usr/local/bin/brew install "kubectx"
+arch -x86_64 /usr/local/bin/brew install "kubectl"
+arch -x86_64 /usr/local/bin/brew install "helm"
+arch -x86_64 /usr/local/bin/brew install "fzf"
+arch -x86_64 /usr/local/bin/brew install "helmfile"
+arch -x86_64 /usr/local/bin/brew install "k9s"
+arch -x86_64 /usr/local/bin/brew install "yq"
+arch -x86_64 /usr/local/bin/brew cleanup
+
+setStatusMessage "Installing App Store applications"
+mas install 1529448980 #"Reeder 5."
+mas install 639968404 #"Parcel - Delivery Tracking"
+mas install 1482454543 #"Twitter"
+
+setStatusMessage "Fixing permissions"
 if [[ -d ~/.ssh ]]; then
-  setStatusMessage "Fixing ssh key permissions"
   find ~/.ssh/ -type f -exec chmod 600 {} \;; find ~/.ssh/ -type d -exec chmod 700 {} \;; find ~/.ssh/ -type f -name "*.pub" -exec chmod 644 {} \;
 fi
+chmod -R g-w '/usr/local/share/zsh'
+chmod go-w '/opt/homebrew/share'
+
 
 if [[ ! -d ~/Development/bpaas-launchpad ]]; then
   setStatusMessage "Setting up the development environment"

@@ -65,7 +65,7 @@ export GREP_OPTIONS='--color=auto';
 
 alias dockerclean='docker rm $(docker ps -a -q); docker rmi $(docker images -q); docker volume rm $(docker volume ls -f dangling=true -q)'
 alias dc='docker-compose'
-alias ibrew='arch -x86_64 /opt/homebrew/bin/brew'
+alias ibrew='arch -x86_64 /usr/local/bin/brew'
 
 function kmerge() {
   KUBECONFIG=~/.kube/config:$1 kubectl config view --flatten > ~/.kube/mergedkub && mv ~/.kube/mergedkub ~/.kube/config
@@ -93,5 +93,6 @@ source $(brew --prefix)/share/zsh-history-substring-search/zsh-history-substring
 if type brew &>/dev/null; then
   FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
   autoload -Uz compinit
-  compinit
+  rm -f ~/.zcompdump; compinit
 fi
+

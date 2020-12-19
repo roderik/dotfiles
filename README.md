@@ -25,6 +25,7 @@ cd ~/dotfiles
 - [Slack](https://slack.com/intl/en-be/downloads/mac)
 - [Mimestream](https://mimestream.com/download)
 - [Intellij IDEA](https://youtrack.jetbrains.com/issue/JBR-2526) --> does not open files, vscode it is
+- [Docker](https://www.docker.com/blog/download-and-try-the-tech-preview-of-docker-desktop-for-m1/)
 
 ## To investigate
 
@@ -41,24 +42,4 @@ cd ~/dotfiles
 #google-cloud-sdk
 #grammarly for safari
 
-#mas "Reeder 5.", id: 1529448980
-#mas "Parcel - Delivery Tracking", id: 639968404
-#mas "Twitter", id: 1482454543
-
-# Rust issue
-#brew "starship"
-
-# Python 3.8 issue
-#brew "azure-cli"
-
-# Go issue
-#brew "aws-iam-authenticator"
-#brew "kubectx"
-#brew "go", args: ["head"]
-#brew "kubectl"
-#brew "helm"
-#brew "fzf"
-#brew "helmfile"
-#brew "k9s"
-#brew "yq"
 ```
