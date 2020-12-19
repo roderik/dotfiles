@@ -51,6 +51,11 @@ if [[ ! -d ~/Development/bpaas-launchpad ]]; then
   git clone git@github.com:settlemint/bpaas-launchpad.git
 fi
 
+if [[ ! -d ~/.vim ]]; then
+  setStatusMessage "Setting up VIM"
+  curl -L https://bit.ly/janus-bootstrap | bash
+fi
+
 setStatusMessage "Copying the dotfiles to ~"
 cp ~/dotfiles/zsh/.* ~;
 git config --global user.name "Roderik van der Veer"
