@@ -1,6 +1,8 @@
 
 # dotfiles
 
+![dotfiles](./logo.jpg)
+
 ## Installation
 
 For all operations we are going to need several command line utilities and XCode. Just the CLT is not enough. Install Xcode via the App Store.
