@@ -13,7 +13,7 @@ Then run
 
 ```sh
 cd ~
-git clone
+git clone https://github.com/roderik/dotfiles.git
 cd ~/dotfiles
 ./install.sh
 ```
