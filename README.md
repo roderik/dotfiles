@@ -3,6 +3,8 @@
 
 ![dotfiles](./logo.jpg)
 
+A pure "Apple Silicon" setup script for my computers. It installs nothing that does not have a native arm version.
+
 ## Installation
 
 For all operations we are going to need several command line utilities and XCode. Just the CLT is not enough. Install Xcode via the App Store.
@@ -18,14 +20,15 @@ cd ~/dotfiles
 ./install.sh
 ```
 
+## Manual applications
+
+- [Slack](https://slack.com/intl/en-be/downloads/mac)
+- [Mimestream](https://mimestream.com/download)
+- [Intellij IDEA](https://youtrack.jetbrains.com/issue/JBR-2526) --> does not open files, vscode it is
+
 ## To investigate
 
 ```yaml
-# manual
-#intellij-idea
-#slack
-#mimestream
-
 # No M1 build
 #cask "kaleidoscope"
 # plex
