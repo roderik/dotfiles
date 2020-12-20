@@ -78,6 +78,7 @@ zplug "dbz/kube-aliases"
 zplug "lukechilds/zsh-better-npm-completion", defer:2
 zplug "srijanshetty/node.plugin.zsh"
 zplug 'dracula/zsh', as:theme
+zplug 'superbrothers/zsh-kubectl-prompt'
 
 # Install plugins if there are plugins that have not been installed
 if ! zplug check; then
@@ -90,9 +91,13 @@ zplug load
 source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $(brew --prefix)/share/zsh-history-substring-search/zsh-history-substring-search.zsh
+source /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc
+source /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc
+
 if type brew &>/dev/null; then
   FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
   autoload -Uz compinit
   rm -f ~/.zcompdump; compinit
 fi
 
+RPROMPT='%{$fg[blue]%}($ZSH_KUBECTL_PROMPT)%{$reset_color%}'

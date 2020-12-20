@@ -55,6 +55,8 @@ arch -x86_64 /usr/local/bin/brew install "fzf"
 arch -x86_64 /usr/local/bin/brew install "helmfile"
 arch -x86_64 /usr/local/bin/brew install "k9s"
 arch -x86_64 /usr/local/bin/brew install "yq"
+arch -x86_64 /usr/local/bin/brew install "pulumi"
+arch -x86_64 /usr/local/bin/brew install "google-cloud-sdk" --cask
 arch -x86_64 /usr/local/bin/brew cleanup
 
 setStatusMessage "Installing App Store applications"
