@@ -17,7 +17,7 @@ Then run
 cd ~
 git clone https://github.com/roderik/dotfiles.git
 cd ~/dotfiles
-./install.sh
+./install.sh <computername>
 ```
 
 ## Manual applications

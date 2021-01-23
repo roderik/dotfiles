@@ -19,16 +19,21 @@ printf "${BGreen}      \/   http://twitter.com/r0derik  \/     \/  ${Color_Off}\
 setStatusMessage "Set MacOS preferences - some settings need a reboot to activate"
 ./macos
 
+if [[ ! -f "./computers/$1" ]]; then
+  ./computers/$1
+fi
 
-if [[ ! -d "/opt/homebrew" ]]; then
-  setStatusMessage "Installing Homebrew (ARM)"
-  cd ~
-  mkdir homebrew && curl -L https://github.com/Homebrew/brew/tarball/master | tar xz --strip 1 -C homebrew
-  sudo mv homebrew /opt/homebrew
-  setStatusMessage "Updating Homebrew"
-  cd /opt/homebrew/bin
-  ./brew update
-  cd ~/dotfiles
+if [[ `uname -m` == "arm64" ]]; then
+  if [[ ! -d "/opt/homebrew" ]]; then
+    setStatusMessage "Installing Homebrew (ARM)"
+    cd ~
+    mkdir homebrew && curl -L https://github.com/Homebrew/brew/tarball/master | tar xz --strip 1 -C homebrew
+    sudo mv homebrew /opt/homebrew
+    setStatusMessage "Updating Homebrew"
+    cd /opt/homebrew/bin
+    ./brew update
+    cd ~/dotfiles
+  fi
 fi
 
 if [[ ! -d "/usr/local/Homebrew" ]]; then
@@ -42,27 +47,6 @@ export PATH="/opt/homebrew/bin:$PATH"
 setStatusMessage "Installing Homebrew applications from the main Brewfile"
 brew bundle
 brew cleanup
-
-setStatusMessage "Installing Homebrew applications for Intel"
-arch -x86_64 /usr/local/bin/brew install mas
-arch -x86_64 /usr/local/bin/brew tap "derailed/k9s"
-arch -x86_64 /usr/local/bin/brew install "azure-cli"
-arch -x86_64 /usr/local/bin/brew install "aws-iam-authenticator"
-arch -x86_64 /usr/local/bin/brew install "kubectx"
-arch -x86_64 /usr/local/bin/brew install "kubectl"
-arch -x86_64 /usr/local/bin/brew install "helm"
-arch -x86_64 /usr/local/bin/brew install "fzf"
-arch -x86_64 /usr/local/bin/brew install "helmfile"
-arch -x86_64 /usr/local/bin/brew install "k9s"
-arch -x86_64 /usr/local/bin/brew install "yq"
-arch -x86_64 /usr/local/bin/brew install "pulumi"
-arch -x86_64 /usr/local/bin/brew install "google-cloud-sdk" --cask
-arch -x86_64 /usr/local/bin/brew cleanup
-
-setStatusMessage "Installing App Store applications"
-mas install 1529448980 #"Reeder 5."
-mas install 639968404 #"Parcel - Delivery Tracking"
-mas install 1482454543 #"Twitter"
 
 setStatusMessage "Fixing permissions"
 if [[ -d ~/.ssh ]]; then
@@ -88,3 +72,4 @@ setStatusMessage "Copying the dotfiles to ~"
 cp ~/dotfiles/zsh/.* ~;
 git config --global user.name "Roderik van der Veer"
 git config --global user.email "roderik@settlemint.com"
+git config --global init.defaultBranch main
