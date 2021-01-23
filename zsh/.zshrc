@@ -2,7 +2,12 @@ source /etc/zshrc
 
 export PATH="$HOME/bin:/opt/homebrew/bin:$PATH";
 
-export ZPLUG_HOME=/opt/homebrew/opt/zplug
+if [[ `uname -m` == "arm64" ]]; then
+  export ZPLUG_HOME=/opt/homebrew/opt/zplug
+else
+  export ZPLUG_HOME=/usr/local/opt/zplug
+fi
+
 source $ZPLUG_HOME/init.zsh
 
 autoload -U colors; colors
@@ -39,8 +44,15 @@ bindkey "^[[A" up-line-or-beginning-search # Up
 bindkey "^[[B" down-line-or-beginning-search # Down
 
 export NVM_DIR="$HOME/.nvm"
-[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && . "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
-[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && . "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+
+if [[ `uname -m` == "arm64" ]]; then
+  [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && . "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+  [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && . "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+else
+  [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+  [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+fi
+
 
 if [ -x /usr/bin/dircolors ]; then
     test -r /etc/lscolors && eval "$(dircolors -b /etc/lscolors)" || eval "$(dircolors -b)"
