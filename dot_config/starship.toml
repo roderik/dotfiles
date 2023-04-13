@@ -1,0 +1,100 @@
+command_timeout = 50000
+
+format = """
+$username\
+$hostname\
+$shlvl\
+$singularity\
+$directory\
+$vcsh\
+$git_branch\
+$git_commit\
+$git_state\
+$git_metrics\
+$git_status\
+$hg_branch\
+$docker_context\
+$package\
+$cmake\
+$cobol\
+$dart\
+$deno\
+$dotnet\
+$elixir\
+$elm\
+$erlang\
+$golang\
+$helm\
+$java\
+$julia\
+$kotlin\
+$lua\
+$nim\
+$nodejs\
+$ocaml\
+$perl\
+$php\
+$pulumi\
+$purescript\
+$python\
+$rlang\
+$red\
+$ruby\
+$rust\
+$scala\
+$swift\
+$terraform\
+$vlang\
+$vagrant\
+$zig\
+$nix_shell\
+$conda\
+$memory_usage\
+$aws\
+$gcloud\
+$openstack\
+$azure\
+$kubernetes\
+$env_var\
+$crystal\
+$custom\
+$sudo\
+$cmd_duration\
+$line_break\
+$jobs\
+$battery\
+$time\
+$status\
+$shell\
+$character"""
+
+
+[kubernetes]
+disabled = false
+format = 'on [$symbol$context( \($namespace\))]($style) '
+
+[kubernetes.context_aliases]
+"dev.local.cluster.k8s" = "dev"
+".*/openshift-cluster/.*" = "openshift"
+"gke_.*_(?P<cluster>[\\w-]+)" = "gke/$cluster"
+"arn:aws:eks:.*/(?P<cluster>[\\w-]+)" = "aws/$cluster"
+"aks-(?P<cluster>[\\w-]+)" = "aks/$cluster"
+"(?P<cluster>[\\w-]+)/.*/admin" = "ibm/$cluster"
+
+[directory]
+truncation_length = 16
+truncation_symbol = '…/'
+
+[aws]
+disabled = true
+
+[gcloud]
+disabled = true
+
+[git_status]
+ahead = "⇡${count}"
+diverged = "⇕⇡${ahead_count}⇣${behind_count}"
+behind = "⇣${count}"
+
+[docker_context]
+disabled = true

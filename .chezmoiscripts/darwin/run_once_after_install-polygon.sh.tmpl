@@ -1,0 +1,48 @@
+#!/bin/bash
+
+set -eufo pipefail
+
+# ChatGPT 4 prompt:
+# This is an arm binary for OSX: https://github.com/0xPolygon/polygon-edge/releases/download/v0.8.1/polygon-edge_0.8.1_darwin_arm64.tar.gz and this is the AMD one for OSX https://github.com/0xPolygon/polygon-edge/releases/download/v0.8.1/polygon-edge_0.8.1_darwin_amd64.tar.gz and this the linux one for AMD https://github.com/0xPolygon/polygon-edge/releases/download/v0.8.1/polygon-edge_0.8.1_linux_amd64.tar.gz and this the ARM one for linux https://github.com/0xPolygon/polygon-edge/releases/download/v0.8.1/polygon-edge_0.8.1_linux_arm64.tar.gz
+# v0.8.1 and 0.8.1 are the latest version numbers part of these URI.
+# Create a bash script, that fetches the latest version from GitHub, and then uses that version in the URL to download the correct binary for the platform the user is on and puts the binary in /usr/local/bin with excutable permissions
+
+# Fetch the latest release version from GitHub
+LATEST_RELEASE_URL="https://api.github.com/repos/0xPolygon/polygon-edge/releases/latest"
+LATEST_VERSION=$(curl --silent $LATEST_RELEASE_URL | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/' | cut -c2-)
+
+# Determine the platform
+PLATFORM=""
+ARCH=""
+
+if [[ "$(uname)" == "Darwin" ]]; then
+PLATFORM="darwin"
+elif [[ "$(uname)" == "Linux" ]]; then
+PLATFORM="linux"
+else
+echo "Unsupported platform."
+exit 1
+fi
+
+if [[ "$(uname -m)" == "x86_64" ]]; then
+ARCH="amd64"
+elif [[ "$(uname -m)" == "arm64" ]] || [[ "$(uname -m)" == "aarch64" ]]; then
+ARCH="arm64"
+else
+echo "Unsupported architecture."
+exit 1
+fi
+
+# Download the appropriate binary
+DOWNLOAD_URL="https://github.com/0xPolygon/polygon-edge/releases/download/v${LATEST_VERSION}/polygon-edge_${LATEST_VERSION}_${PLATFORM}_${ARCH}.tar.gz"
+curl -L -o "polygon-edge_${LATEST_VERSION}_${PLATFORM}_${ARCH}.tar.gz" $DOWNLOAD_URL
+
+# Extract the binary and move it to /usr/local/bin with executable permissions
+tar -xzf "polygon-edge_${LATEST_VERSION}_${PLATFORM}_${ARCH}.tar.gz"
+sudo mv "polygon-edge" /usr/local/bin
+sudo chmod +x /usr/local/bin/polygon-edge
+
+# Clean up the downloaded file
+rm "polygon-edge_${LATEST_VERSION}_${PLATFORM}_${ARCH}.tar.gz"
+
+echo "polygon-edge v${LATEST_VERSION} has been installed to /usr/local/bin"

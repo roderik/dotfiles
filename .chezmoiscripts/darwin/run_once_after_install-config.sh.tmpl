@@ -1,0 +1,18 @@
+#!/bin/bash
+
+set -eufo pipefail
+
+sudo brew services restart sudo-touchid
+
+find .ssh/ -type f -exec chmod 600 {} \;; find .ssh/ -type d -exec chmod 700 {} \;; find .ssh/ -type f -name "*.pub" -exec chmod 644 {} \;
+
+mkdir -p ~/.docker/cli-plugins
+ln -sfn /opt/homebrew/opt/docker-buildx/bin/docker-buildx ~/.docker/cli-plugins/docker-buildx
+ln -sfn /opt/homebrew/opt/docker-compose/bin/docker-compose ~/.docker/cli-plugins/docker-compose
+
+gcloud components install gke-gcloud-auth-plugin
+ibmcloud plugin install container-service
+ibmcloud plugin install container-registry
+ibmcloud plugin install observe-service
+
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
