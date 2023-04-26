@@ -102,6 +102,7 @@ brew update
      "gpg"
      "skopeo"
      "k3d"
+     "tilt"
 -}}
 
 {{ $casks := list
@@ -165,3 +166,5 @@ mas "Pixelmator Pro", id: 1289583905
 EOF
 
 brew upgrade
+curl https://kots.io/install | REPL_USE_SUDO=y REPL_INSTALL_PATH=/usr/local/bin bash
+
