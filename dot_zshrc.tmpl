@@ -63,7 +63,7 @@ load-nvmrc
 export ZPLUG_HOME="$(brew --prefix)/opt/zplug"
 source $ZPLUG_HOME/init.zsh
 
-# Dracula Theme (for zsh-syntax-highlighting)
+{{/* # Dracula Theme (for zsh-syntax-highlighting)
 #
 # https://github.com/zenorocha/dracula-theme
 #
@@ -152,33 +152,8 @@ ZSH_HIGHLIGHT_STYLES[back-quoted-argument-unclosed]='fg=#FF5555'
 ZSH_HIGHLIGHT_STYLES[redirection]='fg=#F8F8F2'
 ZSH_HIGHLIGHT_STYLES[arg0]='fg=#F8F8F2'
 ZSH_HIGHLIGHT_STYLES[default]='fg=#F8F8F2'
-ZSH_HIGHLIGHT_STYLES[cursor]='standout'
+ZSH_HIGHLIGHT_STYLES[cursor]='standout' */}}
 
-zplug "modules/history",    from:prezto
-zplug "modules/utility",    from:prezto
-zplug "modules/terminal",   from:prezto
-zplug "modules/editor",     from:prezto
-zplug "modules/directory",  from:prezto
-zplug "modules/completion", from:prezto
-zplug "zsh-users/zsh-completions",              defer:0
-zplug "zsh-users/zsh-autosuggestions",          defer:2, on:"zsh-users/zsh-completions"
-zplug "zsh-users/zsh-syntax-highlighting",      defer:3, on:"zsh-users/zsh-autosuggestions"
-zplug "zsh-users/zsh-history-substring-search", defer:3, on:"zsh-users/zsh-syntax-highlighting"
-zplug "plugins/git", from:oh-my-zsh
-zplug "b4b4r07/enhancd", use:enhancd.sh
-zplug "jocelynmallon/zshmarks"
-zplug "felixr/docker-zsh-completion"
-zplug "mafredri/zsh-async", from:"github", use:"async.zsh"
-zplug "dbz/kube-aliases"
-zplug "Aloxaf/fzf-tab"
-zplug "Freed-Wu/fzf-tab-source"
-
-if ! zplug check; then
-  echo; zplug install
-fi
-zplug load
-
-enable-fzf-tab
 # disable sort when completing `git checkout`
 zstyle ':completion:*:git-checkout:*' sort false
 # set descriptions format to enable group support
@@ -258,8 +233,6 @@ export USE_GKE_GCLOUD_AUTH_PLUGIN=True
 path=(~/bin $path)
 path=(~/.local/bin $path)
 
-{{/* export DOCKER_HOST="unix://${HOME}/.colima/default/docker.sock" */}}
-
 autoload -U add-zsh-hook
 
 alias cha="chezmoi apply -v && source ~/.zshrc && tmux source-file ~/.tmux.conf"
@@ -275,10 +248,32 @@ export PATH="${PATH}:${HOME}/.krew/bin"
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 
 alias pn=pnpm
-alias pnx=pnpm nx
 
+zplug "modules/history",    from:prezto
+zplug "modules/utility",    from:prezto
+zplug "modules/terminal",   from:prezto
+zplug "modules/editor",     from:prezto
+zplug "modules/directory",  from:prezto
+zplug "modules/completion", from:prezto
+zplug "zsh-users/zsh-completions",              defer:0
+zplug "zsh-users/zsh-autosuggestions",          defer:2, on:"zsh-users/zsh-completions"
+zplug "zsh-users/zsh-syntax-highlighting",      defer:3, on:"zsh-users/zsh-autosuggestions"
+zplug "zsh-users/zsh-history-substring-search", defer:3, on:"zsh-users/zsh-syntax-highlighting"
+zplug "plugins/git", from:oh-my-zsh
+zplug "b4b4r07/enhancd", use:enhancd.sh
+zplug "jocelynmallon/zshmarks"
+zplug "felixr/docker-zsh-completion"
+zplug "mafredri/zsh-async", from:"github", use:"async.zsh"
+zplug "dbz/kube-aliases"
+zplug "Aloxaf/fzf-tab"
+zplug "Freed-Wu/fzf-tab-source"
 
-{{/* if [ "$TMUX" = "" ]; then tmux; fi */}}
+if ! zplug check; then
+  echo; zplug install
+fi
+zplug load
+
+enable-fzf-tab
 
 
 {{- /* vim: set filetype=zsh: */}}

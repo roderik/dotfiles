@@ -1,4 +1,5 @@
 command_timeout = 50000
+continuation_prompt = '▶▶ '
 
 format = """
 $username\
@@ -80,10 +81,6 @@ format = 'on [$symbol$context( \($namespace\))]($style) '
 "arn:aws:eks:.*/(?P<cluster>[\\w-]+)" = "aws/$cluster"
 "aks-(?P<cluster>[\\w-]+)" = "aks/$cluster"
 "(?P<cluster>[\\w-]+)/.*/admin" = "ibm/$cluster"
-
-[directory]
-truncation_length = 16
-truncation_symbol = '…/'
 
 [aws]
 disabled = true
