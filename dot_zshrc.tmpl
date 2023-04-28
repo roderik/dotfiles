@@ -230,7 +230,7 @@ export PATH="${PATH}:${HOME}/.krew/bin"
 
 # krew path
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
-
+eval "$(github-copilot-cli alias -- "$0")"
 alias pn=pnpm
 
 zplug "modules/history",    from:prezto

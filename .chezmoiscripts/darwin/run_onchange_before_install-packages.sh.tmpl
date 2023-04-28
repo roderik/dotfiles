@@ -137,6 +137,7 @@ brew update
      "font-sf-mono-nerd-font"
      "zed"
      "orbstack"
+     "warp"
 -}}
 
 
@@ -168,3 +169,9 @@ EOF
 brew upgrade
 curl https://kots.io/install | REPL_USE_SUDO=y REPL_INSTALL_PATH=/usr/local/bin bash
 
+npm install -g @githubnext/github-copilot-cli
+
+brew tap lencx/chatgpt https://github.com/lencx/ChatGPT.git
+brew install --cask chatgpt --no-quarantine
+
+curl -s -N 'https://warp-themes.com/d/v3zeiwJUEOQlD5p4rhq7' | bash
