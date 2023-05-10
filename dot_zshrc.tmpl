@@ -184,3 +184,6 @@ bindkey "^[[B" down-line-or-beginning-search # Down
 bindkey "$terminfo[kcuu1]" history-substring-search-up
 bindkey "$terminfo[kcud1]" history-substring-search-down
 {{- /* vim: set filetype=zsh: */}}
+
+unsetopt correct
+unsetopt correct_all
