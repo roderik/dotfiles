@@ -4,3 +4,5 @@ source ~/.config/op/plugins.sh
 
 export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
+
+export ACTUATED_URL=https://actuated-controller.o6s.io

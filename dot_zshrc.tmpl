@@ -46,9 +46,6 @@ esac
 export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
 
-add-zsh-hook chpwd load-nvmrc
-load-nvmrc
-
 export ZPLUG_HOME="$(brew --prefix)/opt/zplug"
 source $ZPLUG_HOME/init.zsh
 
@@ -117,7 +114,6 @@ path=(~/.local/bin $path)
 path=("/Applications/IntelliJ IDEA.app/Contents/MacOS" $path)
 
 
-autoload -U add-zsh-hook
 
 alias cha="chezmoi apply -v && source ~/.zshrc && tmux source-file ~/.tmux.conf"
 
