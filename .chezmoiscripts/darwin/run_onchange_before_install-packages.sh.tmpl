@@ -171,9 +171,8 @@ EOF
 brew upgrade
 curl https://kots.io/install | REPL_USE_SUDO=y REPL_INSTALL_PATH=/usr/local/bin bash
 
-curl https://get.volta.sh | bash
-
 npm install -g @githubnext/github-copilot-cli
 
-corepack prepare pnpm@latest --activate
+curl https://get.volta.sh | bash
+
 npm i -g pnpm
