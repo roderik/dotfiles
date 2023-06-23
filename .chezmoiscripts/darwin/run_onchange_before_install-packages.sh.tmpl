@@ -16,6 +16,8 @@ brew update
      "dracula/install"
      "epk/epk"
      "metalbear-co/mirrord"
+     "hashicorp/tap"
+     "caarlos0/tap"
 -}}
 
 {{ $brews := list
@@ -104,6 +106,8 @@ brew update
      "skopeo"
      "k3d"
      "openshift-cli"
+     "hashicorp/tap/vault"
+     "caarlos0/tap/svu"
 -}}
 
 {{ $casks := list
@@ -175,4 +179,4 @@ npm install -g @githubnext/github-copilot-cli
 
 curl https://get.volta.sh | bash
 
-npm i -g pnpm
+npm i -g pnpm@8.5.1
