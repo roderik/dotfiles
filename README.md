@@ -33,20 +33,6 @@ Install the dotfiles
 chezmoi apply -v
 ```
 
-## tmux
-
-Remember that the default <prefix> is ctrl+b.
-
-- Install plugins with <prefix> + I. <- do this after installing!
-- Split panes by pressing <prefix> + % and <prefix> + ".
-- Kill panes by pressing <prefix> + x.
-- Switch panes with <prefix> + arrow.
-- Create new windows by pressing <prefix> + c.
-- Switch windows by pressing <prefix> + number.
-- Rename windows with <prefix> + ,
-- Zoom in and out a pane with <prefix> + z
-- Detach with <prefix> + d and reattach with tmux.
-
 ## Make it your own
 
 1. Fork this repo

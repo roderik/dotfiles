@@ -1,8 +1,0 @@
-export SSH_AUTH_SOCK=~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
-source ~/.config/op/plugins.sh
-
-export VOLTA_HOME="$HOME/.volta"
-export PATH="$VOLTA_HOME/bin:$PATH"
-
-export ACTUATED_URL=https://actuated-controller.o6s.io

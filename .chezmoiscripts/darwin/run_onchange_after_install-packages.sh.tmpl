@@ -1,0 +1,9 @@
+#!/bin/bash
+
+set -eufo pipefail
+
+brew tap --repair
+brew update
+brew bundle --global
+brew upgrade
+brew cleanup

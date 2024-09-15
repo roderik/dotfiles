@@ -1,0 +1,43 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run `zed: open default settings` from the
+// command palette
+{
+  "assistant": {
+    "default_model": {
+      "provider": "zed.dev",
+      "model": "claude-3-5-sonnet-20240620"
+    },
+    "version": "2"
+  },
+  "ui_font_size": 15,
+  "buffer_font_size": 13,
+  "theme": {
+    "mode": "system",
+    "light": "Catpuccin Macha",
+    "dark": "Catppuccin Macchiato"
+  },
+  "features": {
+    "inline_completion_provider": "supermaven"
+  },
+  "project_panel": {
+    "indent_size": 10
+  },
+  "tabs": {
+    "git_status": true,
+    "file_icons": true
+  },
+  "formatter": {
+    "language_server": {
+      "name": "biome"
+    }
+  },
+  "code_actions_on_format": {
+    "source.fixAll.biome": true,
+    "source.organizeImports.biome": true
+  }
+}
