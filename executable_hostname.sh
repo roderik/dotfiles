@@ -25,6 +25,5 @@ HOSTNAME="${HOSTNAME:-$HOSTNAME_DEFAULT}"
 
 # Set computer name (as done via System Preferences → Sharing)
 sudo scutil --set ComputerName $COMPUTER_NAME
-sudo scutil --set LocalHostName $HOSTNAME
 sudo scutil --set HostName $HOSTNAME
 sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string $HOSTNAME
