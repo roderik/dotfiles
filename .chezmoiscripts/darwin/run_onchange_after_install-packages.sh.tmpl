@@ -7,3 +7,9 @@ brew update
 brew bundle --global
 brew upgrade
 brew cleanup
+
+
+if ! grep -q "$(which fish)" /etc/shells; then
+    sudo sh -c "echo $(which fish) >> /etc/shells"
+fi
+chsh -s $(which fish)
