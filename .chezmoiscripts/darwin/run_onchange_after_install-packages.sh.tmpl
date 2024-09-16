@@ -13,3 +13,8 @@ if ! grep -q "$(which fish)" /etc/shells; then
     sudo sh -c "echo $(which fish) >> /etc/shells"
 fi
 chsh -s $(which fish)
+
+curl -fsSL https://bun.sh/install | bash
+
+fnm install 22
+fnm install 20
