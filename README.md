@@ -4,12 +4,16 @@ These dotfiles are a collection of configuration files for various command-line 
 
 They feature:
 
-- an extensive zsh setup with a lot of focus on fzf completions
+- an basic fish setup
 - a ton of super tools
 
 ## Installation
 
-Install Homebrew
+### App Store
+
+Make sure you are logged in to the App Store.
+
+### Install Homebrew
 
 Homebrew is a package manager for macOS, which simplifies the installation of various command-line tools and applications. It is used in the installation process to install chezmoi.
 
@@ -18,7 +22,7 @@ Homebrew is a package manager for macOS, which simplifies the installation of va
 eval "$(/opt/homebrew/bin/brew shellenv)"
 ```
 
-Install Chezmoi
+### Install Chezmoi
 
 Chezmoi is a tool that allows users to manage their dotfiles across multiple machines. It provides a simple and flexible way to manage dotfiles using version control, templates, and encryption. It is used in the installation process to initialize and apply Roderik’s dotfiles.
 
@@ -27,10 +31,16 @@ brew install chezmoi
 chezmoi init --apply roderik
 ```
 
-Install the dotfiles
+### Install the dotfiles
 
 ```
 chezmoi apply -v
+```
+
+### Set your computer name
+
+```
+./hostname.sh <computername>
 ```
 
 ## Make it your own

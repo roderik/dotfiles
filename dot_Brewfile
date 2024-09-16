@@ -45,20 +45,37 @@ brew "hasura-cli"
 
 cask "1password"
 cask "1password-cli"
-cask "arc"
 cask "cleanshot"
 cask "cursor"
 cask "google-cloud-sdk"
 cask "iterm2"
 cask "kaleidoscope"
-cask "mimestream"
 cask "orbstack"
 cask "plex"
 cask "raycast"
 cask "slack"
 cask "tower"
 cask "chatgpt"
-cask "zed@preview"
+cask "zed"
 cask "istat-menus"
 cask "sonos"
 cask "linear-linear"
+cask "zoom"
+cask "amie"
+
+mas "Noir", id: 1592917505
+mas "1Password for Safari", id: 1569813296
+mas "Brother iPrint&Scan", id: 1193539993
+mas "Keynote", id: 409183694
+mas "Infuse", id: 1136220934
+mas "Parcel", id: 639968404
+mas "NordVPN", id: 905953485
+mas "Coin Tick", id: 1141688067
+mas "Spark Desktop", id: 6445813049
+mas "Pages", id: 409201541
+mas "Reeder", id: 6475002485
+mas "Anybox", id: 1593408455
+mas "Amphetamine", id: 937984704
+mas "Numbers", id: 409203825
+mas "Pixelmator Pro", id: 1289583905
+mas "Refined GitHub", id: 1519867270
