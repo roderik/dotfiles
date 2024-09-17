@@ -3,6 +3,8 @@ eval "$(fnm env --use-on-cd)"
 op completion fish | source
 #source ~/.config/op/plugins.sh
 
+export NODE_NO_WARNINGS=1
+
 alias dockerclean='docker rm $(docker ps -a -q); docker rmi $(docker images -q); docker volume rm $(docker volume ls -f dangling=true -q)'
 alias dc='docker compose'
 alias ls='eza -lh --group-directories-first'

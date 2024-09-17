@@ -1,5 +1,5 @@
 {
-	"window.commandCenter": true,
+	"window.commandCenter": 1,
 	"cursor.chat.premiumChatAutoScrollWhenAtBottom": true,
 	"cursor.cmdk.useThemedDiffBackground": true,
 	"cursor.diffs.useCharacterLevelDiffs": true,
@@ -31,7 +31,7 @@
 	"workbench.editor.enablePreview": false,
 	"explorer.fileNesting.enabled": true,
 	"explorer.fileNesting.patterns": {
-		"*.ts": "${capture}.js, ${capture}.typegen.ts, ${capture}.spec.ts",
+		"*.ts": "${capture}.js, ${capture}.typegen.ts, ${capture}.spec.ts, ${capture}.test.ts",
 		"*.js": "${capture}.js.map, ${capture}.min.js, ${capture}.d.ts",
 		"*.cjs": "${capture}.cjs.map, ${capture}.min.cjs, ${capture}.d.cts",
 		"*.jsx": "${capture}.js",
